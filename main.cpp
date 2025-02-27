@@ -2,56 +2,83 @@
 
 using namespace std;  // Use the standard namespace
 
-int main() {
-    // Print a welcome message to the user
-    cout << "Welcome to My calculator" << endl;
-    cout << "\nEnter your first number" << endl;
-
-    // Declare variables to store the input numbers and the result
-    double first_number, second_number, result;
-
-    // Read the first number from the user
-    cin >> first_number;
-
-    // Prompt the user to enter the second number
-    cout << "Enter your second number" << endl;
-    // Read the second number from the user
-    cin >> second_number;
-
-    // Prompt the user to enter the desired operation
-    cout << "Enter the operation you want between {+,-,*,/}" << endl;
-    char operation;
-    // Read the operation character from the user
-    cin >> operation;
-
-    // Perform the appropriate operation based on user input
-    if (operation == '+') {
-        // Addition
-        result = first_number + second_number;      
-    } else if (operation == '-') {
-        // Subtraction
-        result = first_number - second_number;
-    } else if (operation == '*') {
-        // Multiplication
-        result = first_number * second_number;
-    } else if (operation == '/') {
-        // Division
-        if (second_number != 0) {
-            // Check for division by zero
-            result = first_number / second_number;
-        } else {
-            // Print an error message if division by zero is attempted
-            cout << "Error: Division by zero is not allowed." << endl;
-            return 1;  // Exit the program with an error code
+void drawRectangle(int width, int height) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            cout << "*";
         }
+        cout << endl;
+    }
+}
+
+void drawTriangle(int height) {
+    for (int i = 1; i <= height; i++) {
+        for (int j = 1; j <= i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    cout << "Welcome to My Program" << endl;
+    cout << "\nChoose an option:" << endl;
+    cout << "1. Calculator" << endl;
+    cout << "2. Draw Rectangle" << endl;
+    cout << "3. Draw Triangle" << endl;
+    
+    int choice;
+    cin >> choice;
+    
+    if (choice == 1) {
+        // Calculator functionality
+        cout << "\nEnter your first number" << endl;
+        double first_number, second_number, result;
+        cin >> first_number;
+
+        cout << "Enter your second number" << endl;
+        cin >> second_number;
+
+        cout << "Enter the operation you want between {+,-,*,/}" << endl;
+        char operation;
+        cin >> operation;
+
+        if (operation == '+') {
+            result = first_number + second_number;
+        } else if (operation == '-') {
+            result = first_number - second_number;
+        } else if (operation == '*') {
+            result = first_number * second_number;
+        } else if (operation == '/') {
+            if (second_number != 0) {
+                result = first_number / second_number;
+            } else {
+                cout << "Error: Division by zero is not allowed." << endl;
+                return 1;
+            }
+        } else {
+            cout << "Error: Invalid operation." << endl;
+            return 1;
+        }
+
+        cout << "Your answer is: " << result << endl;
+    } else if (choice == 2) {
+        // Draw Rectangle
+        int width, height;
+        cout << "Enter width: ";
+        cin >> width;
+        cout << "Enter height: ";
+        cin >> height;
+        drawRectangle(width, height);
+    } else if (choice == 3) {
+        // Draw Triangle
+        int height;
+        cout << "Enter the height of the triangle: ";
+        cin >> height;
+        drawTriangle(height);
     } else {
-        // Print an error message if an invalid operation is entered
-        cout << "Error: Invalid operation." << endl;
-        return 1;  // Exit the program with an error code
+        cout << "Invalid choice." << endl;
     }
 
-    // Print the result of the operation
-    cout << "Your answer is: " << result << endl;
-
-    return 0;  // Exit the program successfully
+    return 0;
 }
